@@ -7,19 +7,22 @@ c =0
 view= "2"
 
 def input1():
-    print("press m for mainmenu and v for viewing score")      
+    # print("press m for mainmenu and v for viewing score")      
     name = input("Enter your name:")
     print("Hi" + " " + f"{name}" + "!!! My name is ALEXA and I am going to play with you ")
     answ1 = int(input("ARE YOU READY (1/0):"))
     if answ1 == 1 or answ1 == 0:
       match answ1:
         case 1:
+          options(name)      
           start(name)
         case 0:
           exit()
         case _:
           raise ValueError("INVALID INPUT")
-
+def options(name):
+  print("\t\t\t\t\t\t\t\t\t\t\t mainmenu=1\n\t\t\t\t\t\t\t\t\t\t\t exit=0\n\t\t\t\t\t\t\t\t\t\t\t view=v\n")
+  start(name)
 def start(name):
     global g
     global c
@@ -75,12 +78,6 @@ def losing(name):
     global c
     print("ALEXA chose: " + f"{c}")
     print("ALEXA won!!!!!!")
-    with open('victory.txt','a') as f:
-      f.write("\n-------------------------\n")
-      f.write("\n"f"{name}" + " won!!!!!! \n")
-      f.write("ALEXA chose: " + f"{c}\n")
-      f.write(f"{name}" + " won " + f"{count}" + " times \n")
-      f.write("\n--------------------\n")
     start(name)
     
   
@@ -114,7 +111,9 @@ def main1():
   print(c.center(120))
   b=input("Press key to continue:")
   if b.lower()=="v":
-    view()  
+    view() 
+  elif b.lower()=="0":
+    exit()
   else:  
     input1()
 main1()
